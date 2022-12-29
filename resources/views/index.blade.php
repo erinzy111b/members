@@ -1,6 +1,5 @@
 <?php
 
-//告訴瀏覽器這頁面是 UTF-8 編碼
 header("content-type:text/html; charset=utf-8");
 date_default_timezone_set("Asia/Taipei");
 
@@ -13,26 +12,24 @@ $port = "3306";
 $conn = mysqli_connect($host, $user, $password, $db, $port);
 
 if ($conn) {
-    //選擇資料庫
     mysqli_select_db($conn, $db);
-    //設置資料庫編碼方式
     mysqli_query($conn, 'set names utf8');
     mysqli_set_charset($conn, "utf8");
 } else {
     echo "資料庫連線失敗！！";
 }
 
-// echo "<script>
-//        function delall() {
-//          console.log('delall');
-//          if (confirm('\\n您確定要刪除這筆資料嗎?\\n刪除後無法恢復\\n')) {
-//             form1.submit();
-//          }
-//          return false;
-//        }
-//       </script>";
+echo "<script>
+       function delall() {
+         console.log('delall');
+         if (confirm('\\n您確定要刪除這筆資料嗎?\\n刪除後無法恢復\\n')) {
+            form1.submit();
+         }
+         return false;
+       }
+      </script>";
 
-// //
+//
 
 // echo "
 //     <style>
@@ -66,7 +63,7 @@ $sql = "SELECT * FROM `members` LIMIT {$start},{$per_page}";
 $result = mysqli_query($conn, $sql);
 
 // copy
-echo "<form align=center action='php_mysqli_delete_all.php' name='form1' method='post'>";
+echo "<form align=center action='deletemany' name='form1' method='post'>";
 //
 
 echo "<h1 align='center'>會員資料管理系統</h1>";
@@ -77,7 +74,7 @@ echo "<p align='center'>
       </p>";
 
 //資料內容呈現
-echo "<p><table align=center border=1>";
+echo "<p><table align=center border=2>";
 //資料表頭
 echo "<tr>
       <th>編號</th>
@@ -114,14 +111,10 @@ while ($row = mysqli_fetch_assoc($result)) {
     echo "<td>" . $row['m_address'] . "</td>";
     echo "<td>" . $row['m_login'] . "</td>";
     echo "<td>" . $row['m_logintime'] . "</td>";
-    echo "<td>" . $row['m_jiontime'] . "</td>";
-    //第一種寫法
-    echo "<td><a href='update?m_id=" . $row["m_id"] . "'>修改</a></td>";
-    //第二種寫法
-    echo "<td><a href='php_mysqli_delete.php?m_id={$row["m_id"]}'>刪除</a></td>";
-    // copy
+    echo "<td>" . $row['m_jointime'] . "</td>";
+    echo "<td><a href='update?m_id={$row["m_id"]}'>修改</a></td>";
+    echo "<td><a href='delete?m_id={$row["m_id"]}'>刪除</a></td>";
     echo "<td><input type=\"checkbox\" name=\"del[]\" value=\"{$row['m_id']}\"></td>";
-    //
     echo "</tr>";
 }
 
@@ -158,17 +151,3 @@ echo "</table>";
 mysqli_free_result($result);
 mysqli_close($conn);
 
-// {{-- <!DOCTYPE html>
-// <html lang="en">
-// <head>
-//   <meta charset="UTF-8">
-//   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-//   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-//   <title>會員資料管理系統</title>
-// </head>
-// <body>
-
-
-
-// </body>
-// </html> --}}

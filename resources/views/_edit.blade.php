@@ -19,30 +19,6 @@ if ($conn) {
     echo "資料庫連線失敗！！";
 }
 
-if (isset($_POST["action"]) && $_POST["action"] == "update") {
-
-    $sql_query = "UPDATE `members` SET ";
-    $sql_query .= "`m_name` = '" . $_POST["m_name"] . "' , ";
-    $sql_query .= "`m_username` = '" . $_POST["m_username"] . "' , ";
-    $sql_query .= "`m_passwd` = '" . $_POST["m_passwd"] . "' , ";
-    $sql_query .= "`m_sex` = '" . $_POST["m_sex"] . "' , ";
-    $sql_query .= "`m_birthday` = '" . $_POST["m_birthday"] . "' , ";
-    $sql_query .= "`m_level` = '" . $_POST["m_level"] . "' , ";
-    $sql_query .= "`m_email` = '" . $_POST["m_email"] . "' , ";
-    $sql_query .= "`m_url` = '" . $_POST["m_url"] . "' , ";
-    $sql_query .= "`m_phone` = '" . $_POST["m_phone"] . "' , ";
-    $sql_query .= "`m_address` = '" . $_POST["m_address"] . "' ";
-    $sql_query .= " WHERE `m_id` = " . $_POST["m_id"] ;
-    //echo $sql_query;
-    // copy
-    mysqli_query($conn, $sql_query);
-    mysqli_close($conn);
-
-    header('Location: http://members.com:6080');
-    exit();
-
-}
-
 $sql_db = "SELECT * FROM `members` WHERE `m_id` = " . $_GET["m_id"];
 $result = mysqli_query($conn, $sql_db);
 $row = mysqli_fetch_array($result, MYSQLI_BOTH);
@@ -66,7 +42,7 @@ mysqli_close($conn);
 <body>
   <h1 align='center'>會員資料管理系統 - 修改資料</h1>
   <p align='center'><a href='..'>返回主畫面</a></p>
-  <form method="POST" action="update" name="formUpdate">
+  <form method="POST" action="{{ route('editupdate',$id) }}" name="formAdd">
     <table border="1" align="center" cellpadding='4'>
       <tr>
         <th>欄位</th>
@@ -125,7 +101,6 @@ mysqli_close($conn);
            $id = $_GET["m_id"];
           ?>
           <input type="hidden" name="m_id" value="<?= $_GET["m_id"]; ?>">
-          <input type="hidden" name="action" value="update">
           <input type="submit" name="button1" value="確定修改">&emsp;
           <input type="reset" name="button2" value="重置資料">
         </td>

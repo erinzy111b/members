@@ -20,7 +20,7 @@ class MemberFactory extends Factory
         return [
             'm_name' => $this->faker->name,
             'm_username' => $this->faker->userName,
-            'm_passwd' => $this->faker->password,
+            'm_passwd' => $this->faker->numberbetween(100000, 999999),
             'm_sex' => $this->faker->randomElement($array = array('男', '女')),
             'm_birthday' => $this->faker->dateTimeThisCentury($max = 'now', $timezone = null),
             'm_level' => $this->faker->randomElement($array = array('admin', 'member')),
@@ -30,7 +30,7 @@ class MemberFactory extends Factory
             'm_address' => $this->faker->address,
             'm_login' => $this->faker->numberbetween(0, 20),
             'm_logintime' => Carbon::now()->subDays(rand(0, 10)),
-            'm_jiontime' => Carbon::now()->subDays(rand(11, 365)),
+            'm_jointime' => Carbon::now()->subDays(rand(11, 365)),
         ];
     }
 }

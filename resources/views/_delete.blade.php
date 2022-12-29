@@ -11,7 +11,7 @@
 <body>
   <h1 align='center'>會員資料管理系統 - 新增資料</h1>
   <p align='center'><a href='..'>返回主畫面</a></p>
-  <form method="POST" action="{{ route('createstore') }}" name="formAdd">
+  <form action="createstore" method="POST" name="formAdd">
     <table border="1" align="center" cellpadding='4'>
       <tr>
         <th>欄位</th>
@@ -66,10 +66,10 @@
       </tr>
       <tr>
         <td colspan='2' align='center'>
-          {{-- <input type="hidden" name="action" value="create"> --}}
+          <input type="hidden" name="action" value="create">
           <?php $now = date('Y/m/d H:i:s'); ?>
           <input type="hidden" name="m_jointime" value="<?= $now ?>">
-          <input type="submit" name="button1" value="確定新增">&emsp;
+          <input type="submit" name="button1" value="確定新增">
           <input type="reset" name="button2" value="清空重填">
         </td>
       </tr>
@@ -78,6 +78,3 @@
 </body>
 
 </html>
-
-
-

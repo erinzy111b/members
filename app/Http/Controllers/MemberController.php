@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Member;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class MemberController extends Controller
 {
@@ -36,7 +37,26 @@ class MemberController extends Controller
     public function store(Request $request)
     {
         // dd($request);
-        $allrequest = Member::create($request->all());
+        // $input = new Member;
+        // $input = $request->all();
+        // $input = Member::create($request->all());
+        // $allrequest = $request->all();
+        // return $allrequest;
+        $post = new Member;
+        $post->m_name = $request->get('m_name');
+        $post->m_username = $request->get('m_username');
+        $post->m_passwd = $request->get('m_passwd');
+        $post->m_sex = $request->get('m_sex');
+        $post->m_birthday = $request->get('m_birthday');
+        $post->m_level = $request->get('m_level');
+        $post->m_email = $request->get('m_email');
+        $post->m_url = $request->get('m_url');
+        $post->m_phone = $request->get('m_phone');
+        $post->m_address = $request->get('m_address');
+        $post->m_jointime = $request->get('m_jointime');
+        $post->save();
+
+        return Redirect::to('index');
 
     }
 
@@ -71,7 +91,21 @@ class MemberController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return 'editupdate';
+        // $member = Member::find($id);
+        // $member->m_name = $request->get('m_name');
+        // $member->m_username = $request->get('m_username');
+        // $member->m_passwd = $request->get('m_passwd');
+        // $member->m_sex = $request->get('m_sex');
+        // $member->m_birthday = $request->get('m_birthday');
+        // $member->m_level = $request->get('m_level');
+        // $member->m_email = $request->get('m_email');
+        // $member->m_url = $request->get('m_url');
+        // $member->m_phone = $request->get('m_phone');
+        // $member->m_address = $request->get('m_address');
+        // $member->m_jointime = $request->get('m_jointime');
+        // $member->save();
+
     }
 
     /**
@@ -84,4 +118,10 @@ class MemberController extends Controller
     {
         //
     }
+
+    public function editupdate($id)
+    {
+        //
+    }
+
 }
