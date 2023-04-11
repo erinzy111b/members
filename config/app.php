@@ -15,7 +15,7 @@ return [
     |
      */
 
-    'name' => env('Members', 'Laravel'),
+    'name' => env('Members', 'php_crud'),
 
     /*
     |--------------------------------------------------------------------------
@@ -54,7 +54,7 @@ return [
     |
      */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => env('APP_URL', 'http://localhost:6080/php_crud/public'),
 
     'asset_url' => env('ASSET_URL'),
 

@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Member;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
-class MemberSeeder extends Seeder
+class UserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,7 +14,7 @@ class MemberSeeder extends Seeder
      */
     public function run()
     {
-        Member::truncate();
-        Member::factory()->times(50)->create();
+        User::truncate();
+        User::factory()->times(50)->create();
     }
 }

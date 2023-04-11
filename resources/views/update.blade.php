@@ -4,9 +4,9 @@ header("content-type:text/html; charset=utf-8");
 date_default_timezone_set("Asia/Taipei");
 
 $user = "root";
-$password = "1qaz@wsx";
+$password = "";
 $host = "localhost";
-$db = "exam";
+$db = "member";
 $port = "3306";
 
 $conn = mysqli_connect($host, $user, $password, $db, $port);
@@ -38,7 +38,7 @@ if (isset($_POST["action"]) && $_POST["action"] == "update") {
     mysqli_query($conn, $sql_query);
     mysqli_close($conn);
 
-    header('Location: http://members.com:6080');
+    header('Location: index');
     exit();
 
 }
@@ -61,11 +61,20 @@ mysqli_close($conn);
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>會員資料管理系統</title>
+  <script>
+       function del() {
+         console.log('del');
+         if (confirm('\n修改成功  (′゜ω。‵)\n')) {
+            formDel.submit();
+         }
+         return false;
+       }
+  </script>
 </head>
 
 <body>
   <h1 align='center'>會員資料管理系統 - 修改資料</h1>
-  <p align='center'><a href='..'>返回主畫面</a></p>
+  <p align='center'><a href='.'>返回主畫面</a></p>
   <form method="POST" action="update" name="formUpdate">
     <table border="1" align="center" cellpadding='4'>
       <tr>
@@ -126,7 +135,7 @@ mysqli_close($conn);
           ?>
           <input type="hidden" name="m_id" value="<?= $_GET["m_id"]; ?>">
           <input type="hidden" name="action" value="update">
-          <input type="submit" name="button1" value="確定修改">&emsp;
+          <input type="submit" name="button1" value="確定修改" onclick="del()">&emsp;
           <input type="reset" name="button2" value="重置資料">
         </td>
       </tr>

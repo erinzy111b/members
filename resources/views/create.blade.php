@@ -10,7 +10,7 @@
 
 <body>
   <h1 align='center'>會員資料管理系統 - 新增資料</h1>
-  <p align='center'><a href='..'>返回主畫面</a></p>
+  <p align='center'><a href='.'>返回主畫面</a></p>
   <form method="POST" action="{{ route('createstore') }}" name="formAdd">
     <table border="1" align="center" cellpadding='4'>
       <tr>

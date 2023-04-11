@@ -18,11 +18,19 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
-            'name' => fake()->name(),
-            'email' => fake()->unique()->safeEmail(),
-            'email_verified_at' => now(),
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'remember_token' => Str::random(10),
+            'account' => 'guest',
+            'password' => 'guest',
+            'name' => $this->faker->name,
+            'sex' => $this->faker->randomElement($array = array('男', '女')),
+            'year' => $this->faker->numberbetween(60, 90),
+            'month' => $this->faker->numberbetween(1, 12),
+            'day' => $this->faker->numberbetween(1, 29),
+            'telephone' => $this->faker->randomElement($array = array('(02) 2368-5978', '(04) 1000-9999', '(03) 8877-4400', '(04) 1234-5678')),
+            'cellphone' => $this->faker->randomElement($array = array('(0968) 568-854', '(0974) 987-987', '(0978) 444-444', '(0964) 123-234')),
+            'address' => $this->faker->address,
+            'email' => $this->faker->email,
+            'url' => 'http://www.kai.com.tw',
+            'comment' => '這是 guest 帳號',
         ];
     }
 
@@ -33,7 +41,7 @@ class UserFactory extends Factory
      */
     public function unverified()
     {
-        return $this->state(fn (array $attributes) => [
+        return $this->state(fn(array $attributes) => [
             'email_verified_at' => null,
         ]);
     }

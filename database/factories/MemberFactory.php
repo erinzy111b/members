@@ -25,7 +25,7 @@ class MemberFactory extends Factory
             'm_birthday' => $this->faker->dateTimeThisCentury($max = 'now', $timezone = null),
             'm_level' => $this->faker->randomElement($array = array('admin', 'member')),
             'm_email' => $this->faker->email,
-            'm_url' => $this->faker->url,
+            'm_url' => 'http://www.kai.com.tw',
             'm_phone' => $this->faker->phoneNumber,
             'm_address' => $this->faker->address,
             'm_login' => $this->faker->numberbetween(0, 20),

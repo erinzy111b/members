@@ -4,9 +4,9 @@ header("content-type:text/html; charset=utf-8");
 date_default_timezone_set("Asia/Taipei");
 
 $user = "root";
-$password = "1qaz@wsx";
+$password = "";
 $host = "localhost";
-$db = "exam";
+$db = "member";
 $port = "3306";
 
 $conn = mysqli_connect($host, $user, $password, $db, $port);
@@ -25,7 +25,11 @@ if (isset($_POST["action"]) && $_POST["action"] == "delete") {
     $result = mysqli_query($conn, $sql);
     mysqli_close($conn);
 
-    header('Location: http://members.com:6080');
+    header('Location: index');
+
+    // header('Location: http://laravel.test:6080/crud/07/php_crud/public');
+
+    // header('Location: http://localhost:6080/php_crud/public');
     exit();
 
 }
@@ -42,6 +46,8 @@ $id = $_GET["m_id"];
 
 mysqli_close($conn);
 
+
+
 ?>
 
 <!DOCTYPE html>
@@ -52,6 +58,17 @@ mysqli_close($conn);
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>會員資料管理系統</title>
+  <script>
+       function del() {
+         console.log('del');
+         if (confirm('\n確定要刪嗎\n\n刪刪刪  σ ﾟ∀ ﾟ) ﾟ∀ﾟ)σ\n')) {
+            formDel.submit();
+         }
+         return false;
+       }
+  </script>
+
+
 </head>
 
 <body>
@@ -117,8 +134,8 @@ mysqli_close($conn);
           ?>
           <input type="hidden" name="m_id" value="<?= $_GET["m_id"]; ?>">
           <input type="hidden" name="action" value="delete">
-          <input type="submit" name="button1" value="刪除這筆資料">&emsp;
-          <input type="button" onclick="location.href='..'" name="button_return" value="取消">
+          <input type="submit" name="button1" value="刪除這筆資料" onclick="del()">&emsp;
+          <input type="button" onclick="location.href='.'" name="button_return" value="取消">
         </td>
       </tr>
     </table>

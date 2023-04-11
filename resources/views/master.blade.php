@@ -1,4 +1,5 @@
 <?php
+
 header("content-type:text/html; charset=utf-8");
 date_default_timezone_set("Asia/Taipei");
 
@@ -18,11 +19,4 @@ if ($conn) {
     echo "資料庫連線失敗！！";
 }
 
-$del = $_POST['del'];
-// print_r($del);
-foreach ($del as $value) {
-    mysqli_query($conn, "DELETE FROM `members` WHERE `m_id`= " . $value);
-}
-mysqli_close($conn); //關閉資料庫連接
-header('Location: index');
-    exit();
+?>
